@@ -62,7 +62,7 @@ void LinkedList<T>::add(T element){
 template <class T>
 T LinkedList<T>::get(int index) const{
     if (index >= theList.size() || index < 0){
-        string msg = "Invalid index to get(): " + index + ", list size= " +  theList.size();
+        string msg = "Invalid index to get(): " + to_string(index) + ", list size= " +  to_string(theList.size());
         throw invalid_argument(msg.c_str());
     }
 
@@ -79,11 +79,11 @@ T LinkedList<T>::get(int index) const{
 template <class T>
 T LinkedList<T>::remove(int index){
     if (index >= theList.size() || index < 0){
-        string msg = "Invalid index to remove(): " + index + ", list size= " +  theList.size();
+        string msg = "Invalid index to remove(): " + to_string(index) + ", list size= " +  to_string(theList.size());
         throw invalid_argument(msg.c_str());
     }
 
-    list<T>::const_iterator it = theList.begin();
+    list<T>::iterator it = theList.begin();
     for(int i = 0; i < index; i++){
         it++;
     }
