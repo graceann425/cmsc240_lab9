@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 #include "LinkedList.h"
-//#include "Person.h"
+#include <list>
+#include <string>
+#include <stdexcept>
 
 using namespace std;
 
@@ -12,7 +14,7 @@ int main()
 	cout << "Testing LinkedList" << endl;
 	cout << "*****************************************" << endl << endl;
 
-	//testing person constructors (put print statment in each constructor)
+	//testing linked list constructors (put print statment in each constructor)
 	cout << "*****************************************" << endl;
 	cout << "Constructors" << endl;
 	cout << "*****************************************" << endl << endl;
@@ -100,30 +102,30 @@ int main()
 	cout << "*****************************************" << endl << endl;
 	cout << "try: intList.get(1);" << endl;
     try {intList.get(1);}
-    catch (std::const exception& e) 
+    catch (const exception& e) 
     {
-        std::cerr << "exception caught: " << e.what() << std::endl;
+        cerr << "exception caught: " << e.what() << endl;
     }
 
 	cout << "try: intList.remove(1);" << endl;
 	try {intList.remove(1);}
-    catch (std::const exception& e)
+    catch (const exception& e)
     {
-        std::cerr << "exception caught: " << e.what() << std::endl;
+        cerr << "exception caught: " << e.what() << endl;
     }
 
 	cout << "try: doubleList.get(8);" << endl;
     try {doubleList.get(8);}
-    catch (std::const exception& e)
+    catch (const exception& e)
     {
-        std::cerr << "exception caught: " << e.what() << std::endl;
+       	cerr << "exception caught: " << e.what() << endl;
     }
 
 	cout << "try: doubleList.remove(-1);" << endl;
 	try {doubleList.remove(-1);}
-    catch (std::const exception& e)
+    catch (const exception& e)
     {
-        std::cerr << "exception caught: " << e.what() << std::endl;
+        cerr << "exception caught: " << e.what() << endl;
     }
 
 	cout << endl << "*****************************************" << endl;

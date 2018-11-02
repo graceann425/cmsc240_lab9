@@ -3,6 +3,8 @@
 
 #include <list>
 #include <vector>
+#include <string>
+#include <stdexcept>
 
 using namespace std;
 
@@ -10,7 +12,7 @@ template <class T>
 class LinkedList
 {
    private:
-     std::list<T> theList;
+     list<T> theList;
 
    public:
      LinkedList();
@@ -29,12 +31,15 @@ class LinkedList
 };
 
 template <class T>
-LinkedList<T>::LinkedList(){}
+LinkedList<T>::LinkedList(){
+    cout << "inside default constructor" << endl;
+}
 
 
 template <class T>
 LinkedList<T>::LinkedList(const LinkedList<T>& other) {
     this->theList = other.theList;
+    cout << "inside copy constructor" << endl;
 }
 
 
@@ -45,45 +50,44 @@ LinkedList<T>::~LinkedList(){}
 
 
 template <class T>
-int LinkedList<T>::size() const{
-
+int LinkedList<T>::size() const
+{
     return theList.size();
 }
 
 
 template <class T>
-void LinkedList<T>::add(T element){
+void LinkedList<T>::add(T element)
+{
     theList.push_back(element);
-    return;
 }
 
 
 
 template <class T>
-T LinkedList<T>::get(int index) const{
+T LinkedList<T>::get(int index) const
+{
     if (index >= theList.size() || index < 0){
-        string msg = "Invalid index to get(): " + to_string(index) + ", list size= " +  to_string(theList.size());
-        throw invalid_argument(msg.c_str());
+        throw std::invalid_argument( "Invalid index to get() " );
     }
 
-    list<T>::const_iterator it = theList.begin();
+    typename list <T>::const_iterator it = theList.begin();
     for(int i = 0; i < index; i++){
         it++;
     }
 
     return (*it);
-
 }
 
 
 template <class T>
-T LinkedList<T>::remove(int index){
+T LinkedList<T>::remove(int index)
+{
     if (index >= theList.size() || index < 0){
-        string msg = "Invalid index to remove(): " + to_string(index) + ", list size= " +  to_string(theList.size());
-        throw invalid_argument(msg.c_str());
+        throw std::invalid_argument( "Invalid index to remove() " );
     }
 
-    list<T>::iterator it = theList.begin();
+    typename list <T>::iterator it = theList.begin();
     for(int i = 0; i < index; i++){
         it++;
     }
@@ -95,11 +99,14 @@ T LinkedList<T>::remove(int index){
 
 
 template <class T>
-std::vector<T> LinkedList<T>::toArray() const{
+std::vector<T> LinkedList<T>::toArray() const
+{
     std::vector<T> final;
-    while (! theList.empty()) {
-        final.push_back(theList.front());
-        theList.pop_front();
+
+    typename list <T>::const_iterator it = theList.begin();
+    for(int i = 0; i < theList.size(); i++){
+        final.push_back(*it);
+        it++;
     }
 
     return final;
@@ -107,11 +114,13 @@ std::vector<T> LinkedList<T>::toArray() const{
 
 
 template <class T>
-LinkedList<T>& LinkedList<T>::operator+=(const T& item) {
-    theList.append(item);
-    
-    return *theList;
-
+LinkedList<T>& LinkedList<T>::operator+=(const T& item) 
+{
+    theList.push_back(item);
+    //LinkedList<T> list2 = theList;
+    //return list2; 
+    LinkedList<T> list2;
+    return list2;
 }
 
 
