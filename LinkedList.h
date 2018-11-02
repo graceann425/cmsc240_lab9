@@ -117,10 +117,7 @@ template <class T>
 LinkedList<T>& LinkedList<T>::operator+=(const T& item) 
 {
     theList.push_back(item);
-    //LinkedList<T> list2 = theList;
-    //return list2; 
-    LinkedList<T> list2;
-    return list2;
+    return (LinkedList<T>&) theList;
 }
 
 
